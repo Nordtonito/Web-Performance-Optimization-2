@@ -3,6 +3,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: path.resolve(__dirname, 'src/index.js'),
+    resolve: {
+        extensions: ['*', '.js']
+    },
     output: {
         filename: 'bundle.js',
     },
@@ -10,7 +13,7 @@ module.exports = {
         rules: [
             {
                 test: /\.html$/i,
-                loader: "html-loader",
+                loader: 'html-loader',
             },
             {
                 test: /\.(png|jpe?g|gif)$/i,
@@ -19,11 +22,16 @@ module.exports = {
                     outputPath: 'images',
                 },
             },
+            {
+                test: /\.js$/i,
+                loader: 'babel-loader',
+                exclude: /node_modules/
+            },
         ]
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: "./src/index.html"
+            template: './src/index.html'
         })
     ],
     mode: 'production'
