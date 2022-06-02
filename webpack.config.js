@@ -2,9 +2,13 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    entry: path.resolve(__dirname, 'src/index.js'),
+    entry: {
+        smaller: './src/index.js',
+        bigger: './src/index.js'
+    },
     output: {
-        filename: 'bundle.js',
+        path: __dirname + '/dist',
+        filename: '[name]-bundle.js',
     },
     module: {
         rules: [
@@ -19,11 +23,44 @@ module.exports = {
                     outputPath: 'images',
                 },
             },
+            {
+                test: /\.js$/i,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env'],
+                        targets: {
+                            browsers: [
+                                "last 2 versions",
+                                "> 5%",
+                                "not dead"
+                            ]
+                        }
+                    }
+                }
+            },
+            {
+                test: /\.js$/i,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env'],
+                        targets: {
+                            browsers: [
+                                "last 100 versions",
+                                "> 0.1%"
+                            ]
+                        }
+                    }
+                }
+            },
         ]
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: "./src/index.html"
+            template: './src/index.html'
         })
     ],
     mode: 'production'
