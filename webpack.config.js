@@ -3,20 +3,21 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: path.resolve(__dirname, 'src/index.js'),
+    output: {
+        path: __dirname + '/dist',
+        filename: 'bundle.js',
+    },
     resolve: {
         extensions: ['*', '.js']
-    },
-    output: {
-        filename: 'bundle.js',
     },
     module: {
         rules: [
             {
                 test: /\.html$/i,
-                loader: 'html-loader',
+                loader: "html-loader",
             },
             {
-                test: /\.(png|jpe?g|gif)$/i,
+                test: /\.(png|jpe?g|gif|webp)$/i,
                 loader: 'file-loader',
                 options: {
                     outputPath: 'images',
@@ -24,8 +25,20 @@ module.exports = {
             },
             {
                 test: /\.js$/i,
-                loader: 'babel-loader',
-                exclude: /node_modules/
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env'],
+                        targets: {
+                            browsers: [
+                                "last 2 versions",
+                                "> 5%",
+                                "not dead"
+                            ]
+                        }
+                    }
+                }
             },
         ]
     },
@@ -34,5 +47,8 @@ module.exports = {
             template: './src/index.html'
         })
     ],
-    mode: 'production'
+    mode: 'production',
+    externals: {
+        'sharp': 'commonjs sharp'
+    }
 };
