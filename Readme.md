@@ -1,34 +1,17 @@
-# Identify target browser hometask
+# Images performance hometask
 
 ## Task description
-The main goal of the task is to create 2 webpack projects and compare the sizes of the resulting js files. 
-In the first project you need to connect babel and configure the browserlist according to the condition. 
-In the second, you need to configure a separate assembly for old and modern browsers based on the esmodules in babel.
-
-Structure of the task should be:
-
-```
-<task folder>
-+---Part 1
-|   +---src
-|   \---package.json
-|   \---webpack.config.js
-|   \---.babelrc
-|   \---...
-+---Part 2
-|   +---src
-|   \---package.json
-|   \---webpack.config.js
-|   \---.babelrc
-|   \---...
-+---Comparative Report
-```
+Main goal of the task is to implement an approach with responsive images and lazy loading images.
 
 ## Evaluation criteria
 For every day of lateness there is a penalty in 0.5 point. Maximum 10 points. 
 
-1. In first project setup webpack to work with babel. Create .babelrc file and configure babel to support last 2
-   versions of browsers, not dead browsers and browsers with usability more then 5%. **[4 points]**
-2. In second project use ES modules with Babel in order to create two different js files, one of which will be less weight
-   and load in modern browsers, and the second will be larger and provide support for older browsers **[3 points]**
-3. Compare 3 js file sizes from both projects and attach small comparative report in hometask **[3 points]**
+1. Use sharp plugin (https://sharp.pixelplumbing.com/api-resize) to cut pictures into resolutions:
+320, 768, 1024 and 1920 pixels and convert them into webp format during the assembly process.
+Include the sliced images to the page via srcset and media **[3 points]**
+2. Add jpeg images for browsers that are not support webp with the same resolutions (320,
+768, 1024 and 1920 pixels) and compress them (80%). Include the sliced images to the page
+via srcset and media **[3 points]**
+3. Implement a lazy loading image approach (browser-level) **[1 point]**
+4. Implement a lazy loading image polyfill for older browsers and use this approach only in 
+browsers that do not support standard **[3 point]**

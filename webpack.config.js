@@ -4,7 +4,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
     entry: path.resolve(__dirname, 'src/index.js'),
     output: {
+        path: __dirname + '/dist',
         filename: 'bundle.js',
+    },
+    resolve: {
+        extensions: ['*', '.js']
     },
     module: {
         rules: [
@@ -13,18 +17,38 @@ module.exports = {
                 loader: "html-loader",
             },
             {
-                test: /\.(png|jpe?g|gif)$/i,
+                test: /\.(png|jpe?g|gif|webp)$/i,
                 loader: 'file-loader',
                 options: {
                     outputPath: 'images',
                 },
             },
+            {
+                test: /\.js$/i,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env'],
+                        targets: {
+                            browsers: [
+                                "last 2 versions",
+                                "> 5%",
+                                "not dead"
+                            ]
+                        }
+                    }
+                }
+            },
         ]
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: "./src/index.html"
+            template: './src/index.html'
         })
     ],
-    mode: 'production'
+    mode: 'production',
+    externals: {
+        'sharp': 'commonjs sharp'
+    }
 };
