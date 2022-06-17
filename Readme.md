@@ -1,34 +1,15 @@
-# Identify target browser hometask
+# Font Optimization hometask
 
 ## Task description
-The main goal of the task is to create 2 webpack projects and compare the sizes of the resulting js files. 
-In the first project you need to connect babel and configure the browserlist according to the condition. 
-In the second, you need to configure a separate assembly for old and modern browsers based on the esmodules in babel.
 
-Structure of the task should be:
-
-```
-<task folder>
-+---Part 1
-|   +---src
-|   \---package.json
-|   \---webpack.config.js
-|   \---.babelrc
-|   \---...
-+---Part 2
-|   +---src
-|   \---package.json
-|   \---webpack.config.js
-|   \---.babelrc
-|   \---...
-+---Comparative Report
-```
+Main goal of the task is to load and use fonts in an optimized way.
 
 ## Evaluation criteria
-For every day of lateness there is a penalty in 0.5 point. Maximum 10 points. 
 
-1. In first project setup webpack to work with babel. Create .babelrc file and configure babel to support last 2
-   versions of browsers, not dead browsers and browsers with usability more then 5%. **[4 points]**
-2. In second project use ES modules with Babel in order to create two different js files, one of which will be less weight
-   and load in modern browsers, and the second will be larger and provide support for older browsers **[3 points]**
-3. Compare 3 js file sizes from both projects and attach small comparative report in hometask **[3 points]**
+For every day of lateness there is a penalty in 0.5 point. Maximum 10 points.
+
+1. Import both roboto and raleway fonts properly using the most optimal font format (woff, woff2) **[2 points]**
+2. Use Roboto for all paragraph texts and Raleway for all headers **[1 point]**
+3. Ensure that fonts are properly preloaded with crossorgin property set properly **[2 points]**
+4. Use proper font-face declaration with the appropriate unicode range, setting a correct font stack starting with local() **[3 points]**
+5. Make sure that fonts are displayed with the FOUT strategy **[2 points]**
