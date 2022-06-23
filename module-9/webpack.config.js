@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   entry: {
     index: {
-      import:'./src/task2.js',
+      import:'./src/task3.js',
     },
   },
   output: {
@@ -30,7 +30,7 @@ module.exports = {
       }
     ]
   },
-  mode: 'production',
+  mode: 'development',
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     port: 9000

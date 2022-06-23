@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "../module-7/node_modules/.bin/webpack",
-    "serve": "../module-7/node_modules/.bin/webpack-dev-server"
+    "build": "NODE_ENV=production ../module-7/node_modules/.bin/webpack",
+    "serve": "NODE_ENV=production ../module-7/node_modules/.bin/webpack-dev-server"
   },
   "author": "",
   "license": "ISC",
@@ -16,6 +16,14 @@
     "style-loader": "^2.0.0",
     "webpack": "^5.17.0",
     "webpack-cli": "^4.4.0",
-    "webpack-dev-server": "^3.11.0"
-  }
+    "webpack-dev-server": "^3.11.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^8.19.0"
+  },
+  "eslintConfig": {
+    "rules": {
+      "no-console": "off"
+    }
+  },
+  "sideEffects": false
 }
