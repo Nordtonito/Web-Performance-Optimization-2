@@ -5,19 +5,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   entry: {
     index: {
-      import:'./src/task1.js',
-      dependOn: 'shared',
+      import:'./src/task2.js',
     },
-    shared: './src/fn1.js',
   },
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
-  },
-  optimization: {
-    splitChunks: {
-      chunks: 'all',
-    },
   },
   plugins: [
     new CleanWebpackPlugin(),
